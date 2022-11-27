@@ -20,7 +20,6 @@ router.get("/categories/:categoryId/products", (req, res) => {
 })
 
 
-
 router.delete("/orders/:id", (req: Request, res: Response) => {
   res.send("OK")
 })
