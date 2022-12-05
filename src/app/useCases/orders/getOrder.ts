@@ -8,6 +8,12 @@ export async function getOrder(req: Request, res: Response) {
 
     const orders = Order.find()
 
+    if ((await orders).length == 0) {
+      return res.status(404).json({
+        message: "no orders found!"
+      })
+    }
+
     res.status(200).json({
       orders
     })

@@ -2,16 +2,17 @@ import { model, Schema } from "mongoose"
 
 export const Order = model("Order", new Schema({
   table: {
-    type: String,
+    type: Schema.Types.String,
   },
   status: {
-    type: String,
+    type: Schema.Types.String,
     enum: ["WAITING", "IN_PRODUCTION", "DONE"],
     default: "WAITING"
   },
-  createdAT: {
-    type: Date,
-    default: Date.now
+  createdAt: {
+    type: Schema.Types.Date,
+    default: Date.now, //executa qunado o MONGOOSE executar e não quando o código for executado
+    required: false
   },
   produtcs: {
     required: true,
@@ -22,7 +23,7 @@ export const Order = model("Order", new Schema({
         required: true,
       },
       quantity: {
-        type: Number,
+        type: Schema.Types.Number,
         default: 1
       }
     }]

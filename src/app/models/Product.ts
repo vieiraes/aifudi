@@ -1,27 +1,44 @@
-import { model, Schema } from "mongoose"
+import { model, Schema } from 'mongoose'
 
-export const Product = model("Product", new Schema({
+export const Product = model('Product', new Schema({
   name: {
-    type: String,
+    type: Schema.Types.String,
     required: true
   },
-  description: String,
-  imagePath: String,
+  description: {
+    type: Schema.Types.String,
+    required: false
+  },
+  image: {
+    type: Schema.Types.String,
+    required: false
+  },
   price: {
-    type: Number,
+    type: Schema.Types.String,
     required: true
   },
   ingredients: {
-    type: [{
-      name: String,
-    }, {
-      icon: String
-    }],
-    required: true
-  },
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
     required: true,
+    type: [{
+      name: {
+        type: Schema.Types.String,
+        required: true
+      }
+    }, {
+      icon: {
+        type: Schema.Types.String,
+        required: true
+      }
+    }]
+  },
+  categoryId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
+  createdAt: {
+    type: String,
+    default: Date.now, //executa qunado o MONGOOSE executar e não quando o código for executado
+    required: false
   }
 }))

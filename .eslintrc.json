@@ -27,11 +27,14 @@
     ],
     "quotes": [
       "error",
-      "double"
+      "single"
     ],
     "semi": [
       "error",
       "never"
+    ],
+    "no-multi-spaces": [
+      "error"
     ]
   }
 }
