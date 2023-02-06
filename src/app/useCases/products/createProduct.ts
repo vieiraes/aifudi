@@ -26,7 +26,7 @@ export async function createProduct(req: Request, res: Response) {
       createdAt: Date.now()
     }
     const product = await Product.create(object)
-    res.status(201).json({product})
+    res.status(201).json({ product })
 
   } catch (error) {
     console.log(error)
