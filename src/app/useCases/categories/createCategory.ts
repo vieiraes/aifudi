@@ -16,10 +16,11 @@ export async function createCategory(req: Request, res: Response) {
     const object = {
       name: name,
       icon: icon,
-      date: Date.now()
+      createdAt: Date.now()
     }
 
     const category = await Category.create(object)
+
     res.status(201).json({
       message: 'object created',
       category

@@ -3,6 +3,7 @@ import { model, Schema } from "mongoose"
 export const Order = model("Order", new Schema({
   table: {
     type: Schema.Types.String,
+    required: true
   },
   status: {
     type: Schema.Types.String,
@@ -11,22 +12,21 @@ export const Order = model("Order", new Schema({
   },
   createdAt: {
     type: Schema.Types.Date,
-    default: Date.now, //executa qunado o MONGOOSE executar e não quando o código for executado
+    default: Date.now,
     required: false
   },
-  produtcs: {
+  products: {
+    minlength: 1,
     required: true,
     type: [{
-      product: {
+      productId: {
         type: Schema.Types.ObjectId,
-        ref: "Product",
-        required: true,
+        ref: 'Product',
       },
       quantity: {
         type: Schema.Types.Number,
-        default: 1
+        default: 1,
       }
     }]
   }
-
 }))

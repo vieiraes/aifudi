@@ -9,36 +9,32 @@ export const Product = model('Product', new Schema({
     type: Schema.Types.String,
     required: false
   },
-  image: {
-    type: Schema.Types.String,
-    required: false
-  },
   price: {
-    type: Schema.Types.String,
+    type: Schema.Types.Number,
     required: true
   },
-  ingredients: {
-    required: true,
-    type: [{
-      name: {
-        type: Schema.Types.String,
-        required: true
-      }
-    }, {
-      icon: {
-        type: Schema.Types.String,
-        required: true
-      }
-    }]
-  },
+  // ingredients: {
+  //   required: true,
+  //   type: [{
+  //     name: {
+  //       type: Schema.Types.String,
+  //       required: true
+  //     }
+  //   }, {
+  //     icon: {
+  //       type: Schema.Types.String,
+  //       required: true
+  //     }
+  //   }]
+  // },
   categoryId: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true,
   },
   createdAt: {
-    type: String,
-    default: Date.now, //executa qunado o MONGOOSE executar e não quando o código for executado
+    type: Schema.Types.Date,
+    default: Date.now, //executa quando o MONGOOSE executar, e não quando o código for executado
     required: false
   }
 }))

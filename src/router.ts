@@ -5,11 +5,9 @@ import { listProducts } from './app/useCases/products/listProducts'
 import { createProduct } from './app/useCases/products/createProduct'
 import { getOrder } from './app/useCases/orders/getOrder'
 import { createOrder } from './app/useCases/orders/createOrder'
-import { uploadMiddelware } from './app/middelwares'
+// import { uploadMiddelware } from './app/middelwares'
 
 export const router = Router()
-
-
 
 // const upload = multer({
 
@@ -23,7 +21,7 @@ export const router = Router()
 router.get('/categories', listCategories)
 router.post('/categories', createCategory)
 router.get('/products', listProducts)
-router.post('/products', uploadMiddelware, createProduct)
+router.post('/products', createProduct)
 router.get('/orders', getOrder)
 router.post('/orders', createOrder)
 
