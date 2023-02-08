@@ -1,5 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response } from "express"
 import { Order } from '../../models/Order'
+import { OrderStatusENUM } from '../../../enums/orderValues.enum'
+
 
 export async function updateOrder(req: Request, res: Response) {
   try {
@@ -12,13 +14,19 @@ export async function updateOrder(req: Request, res: Response) {
     if (!id) {
       res.status(401).json({ message: 'orderId missing' })
     }
+
+    const isValidStatus = Object.values(OrderStatusENUM).includes(status)
+    if (!isValidStatus) {
+      res.status(401).json({ message: 'status not valid' })
+    }
+
     const data = await Order.findByIdAndUpdate(id, {
       status: status,
       updatedAt: Date.now()
     })
 
-    if(!data){
-      res.status(404).json({message: 'order not found'})
+    if (!data) {
+      res.status(404).json({ message: 'order not found' })
     }
     const dataUpdated = await Order.findByIdAndUpdate(id, { status: status })
 
