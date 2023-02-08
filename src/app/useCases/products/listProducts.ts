@@ -5,7 +5,7 @@ import { Product } from "../../models/Product"
 export async function listProducts(req: Request, res: Response) {
 
   try {
-    const products = await Product.find()
+    const products = await Product.find().sort({createdAt: -1})
 
     const object = {
       products

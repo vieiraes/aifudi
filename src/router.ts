@@ -1,10 +1,13 @@
-import { Request, Response, Router } from 'express'
+import { Router } from 'express'
 import { listCategories } from './app/useCases/categories/listCategories'
 import { createCategory } from './app/useCases/categories/createCategory'
 import { listProducts } from './app/useCases/products/listProducts'
 import { createProduct } from './app/useCases/products/createProduct'
-import { getOrder } from './app/useCases/orders/getOrder'
+import { listOrders } from './app/useCases/orders/getOrder'
 import { createOrder } from './app/useCases/orders/createOrder'
+import { deleteCategory } from './app/useCases/categories/deleteCategoty'
+import { updateOrder } from './app/useCases/orders/updateOrder'
+
 // import { uploadMiddelware } from './app/middelwares'
 
 export const router = Router()
@@ -18,26 +21,15 @@ export const router = Router()
 //   })
 // })
 
-router.get('/categories', listCategories)
-router.post('/categories', createCategory)
-router.get('/products', listProducts)
-router.post('/products', createProduct)
-router.get('/orders', getOrder)
-router.post('/orders', createOrder)
 
-router.get('/categories/:categoryId/products', (req, res) => {
-  res.send('OK')
-})
+//V1 routes
+router.get('/v1/categories', listCategories)
+router.post('/v1/categories', createCategory)
+router.delete('/v1/categories/:id', deleteCategory)
 
+router.get('/v1/products', listProducts)
+router.post('/v1/products', createProduct)
 
-router.delete('/orders/:id', (req: Request, res: Response) => {
-  res.send('OK')
-})
-
-router.patch('/orders/:orderId', (req, res) => {
-  res.send('OK')
-})
-
-router.get('/products/:id', (req, res) => {
-  res.send('OK')
-})
+router.get('/v1/orders', listOrders)
+router.post('/v1/orders', createOrder)
+router.patch('/v1/orders/:id', updateOrder)

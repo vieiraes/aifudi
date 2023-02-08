@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 import { Order } from '../../models/Order'
 
-export async function getOrder(req: Request, res: Response) {
+export async function listOrders(req: Request, res: Response) {
   try {
-    const orders = await Order.find()
+    const orders = await Order.find().sort({createdAt: -1})
     if ((orders).length == 0) {
       return res.status(404).json({
         message: 'no orders found!'

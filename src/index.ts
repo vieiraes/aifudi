@@ -1,6 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import { router } from './router'
+import { routeNotFoundHandler } from './app/middelwares/routeNotfound'
+
 
 try {
   mongoose.set('strictQuery', false)
@@ -11,6 +13,7 @@ try {
 
       app.use(express.json()) //tem que usar sempre antes do router
       app.use(router)
+      app.use(routeNotFoundHandler);
       app.listen(3333, () => {
         console.log(`Server started on port ${port}!`)
       })

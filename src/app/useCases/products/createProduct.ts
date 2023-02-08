@@ -8,7 +8,6 @@ const errorMessages = {
   categoryId: 'O campo categoryId é obrigatório.',
 }
 
-
 export async function createProduct(req: Request, res: Response) {
   const { name, description, price, categoryId } = req.body
   try {
@@ -16,7 +15,6 @@ export async function createProduct(req: Request, res: Response) {
     if (!description) return res.status(400).json({ message: errorMessages.description })
     if (!price || typeof (price) !== 'number') return res.status(400).json({ message: errorMessages.price })
     if (!categoryId) return res.status(400).json({ message: errorMessages.categoryId })
-
 
     const object = {
       name,
