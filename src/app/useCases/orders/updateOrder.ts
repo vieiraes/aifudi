@@ -3,15 +3,26 @@ import { Order } from '../../models/Order'
 
 export async function updateOrder(req: Request, res: Response) {
   try {
-    const { orderId } = req.params
+    const { id } = req.params
     const { status } = req.body
-    if (!status || !orderId) {
-      res.status(401).json({ message: 'Status or OrderId missing' })
+
+    if (!status) {
+      res.status(401).json({ message: 'status missing' })
     }
-    const data = await Order.findByIdAndUpdate(orderId, { status: status })
-    const object = {
-      data
+    if (!id) {
+      res.status(401).json({ message: 'orderId missing' })
     }
+    const data = await Order.findByIdAndUpdate(id, {
+      status: status,
+      updatedAt: Date.now()
+    })
+
+    if(!data){
+      res.status(404).json({message: 'order not found'})
+    }
+    const dataUpdated = await Order.findByIdAndUpdate(id, { status: status })
+
+    const object = { dataUpdated }
     res.status(200).json({
       message: 'order udpated',
       object

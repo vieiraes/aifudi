@@ -32,4 +32,4 @@ router.post('/v1/products', createProduct)
 
 router.get('/v1/orders', listOrders)
 router.post('/v1/orders', createOrder)
-router.patch('/v1/orders/:id', updateOrder)
+router.patch('/v1/orders/:id/status', updateOrder)

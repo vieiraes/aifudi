@@ -15,6 +15,10 @@ export const Order = model("Order", new Schema({
     default: Date.now,
     required: false
   },
+  updatedAt: {
+    type: Schema.Types.Date,
+    default: null,
+  },
   products: {
     minlength: 1,
     required: true,
