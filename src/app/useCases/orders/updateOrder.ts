@@ -8,16 +8,16 @@ export async function updateOrder(req: Request, res: Response) {
     const { id } = req.params
     const { status } = req.body
 
-    if (!status) {
-      res.status(401).json({ message: 'status missing' })
+    if (!status || status == "") {
+      return res.status(401).json({ message: 'status missing' })
     }
-    if (!id) {
-      res.status(401).json({ message: 'orderId missing' })
+    if (!id || id == "") {
+      return res.status(401).json({ message: 'orderId missing' })
     }
 
     const isValidStatus = Object.values(OrderStatusENUM).includes(status)
     if (!isValidStatus) {
-      res.status(401).json({ message: 'status not valid' })
+      return res.status(401).json({ message: 'status not valid' })
     }
 
     const data = await Order.findByIdAndUpdate(id, {
@@ -38,7 +38,7 @@ export async function updateOrder(req: Request, res: Response) {
 
   } catch (error) {
     console.log(error)
-    res.status(400).json({ message: 'Error updateing order status' })
+    res.status(400).json({ message: 'Error updating order status' })
   }
 
 }//final

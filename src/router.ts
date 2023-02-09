@@ -7,6 +7,7 @@ import { listOrders } from './app/useCases/orders/getOrder'
 import { createOrder } from './app/useCases/orders/createOrder'
 import { deleteCategory } from './app/useCases/categories/deleteCategoty'
 import { updateOrder } from './app/useCases/orders/updateOrder'
+import { requestCategoryById } from './app/useCases/categories/listCategoriesById'
 
 // import { uploadMiddelware } from './app/middelwares'
 
@@ -26,6 +27,8 @@ export const router = Router()
 router.get('/v1/categories', listCategories)
 router.post('/v1/categories', createCategory)
 router.delete('/v1/categories/:id', deleteCategory)
+router.get('/v1/categories/:id', requestCategoryById)
+
 
 router.get('/v1/products', listProducts)
 router.post('/v1/products', createProduct)
