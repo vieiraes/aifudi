@@ -83,6 +83,6 @@ updateOrder
 requestCategoryById
 
 ## Contact
-## [Send me an email](mailto:vieira.es@gmail.com)
+[Send me an email](mailto:vieira.es@gmail.com)
 
 
